@@ -1,6 +1,11 @@
 import telebot
+import webbrowser
 
 bot = telebot.TeleBot('5885143732:AAFoAMITlbkmlQzUEFc0BXMWiAmTDq5av3Y')
+
+@bot.message_handler(commands=['site', 'website'])
+def site(message):
+    webbrowser.open('https://students.kpfu.ru/psychological-service/about/general-information')
 
 @bot.message_handler(commands=['start', 'hello'])
 def main(message):
