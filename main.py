@@ -6,6 +6,7 @@ from telebot import types
 
 
 bot = telebot.TeleBot('5885143732:AAFoAMITlbkmlQzUEFc0BXMWiAmTDq5av3Y')
+TO_CHAT_ID = -1001980809298
 with open('aforism.txt','r', encoding="utf-8") as aforism:
     aforism = aforism.readlines()
 
@@ -17,10 +18,10 @@ def site(message):
 def start(message):
     markup = types.ReplyKeyboardMarkup()
     btn1 = types.KeyboardButton('Перейти на сайт')
-    markup.row(btn1)
+    markup.row(btn1, btn2)
     btn2 = types.KeyboardButton('Удалить фото')
     btn3 = types.KeyboardButton('Новый афоризм')
-    markup.row(btn2, btn3)
+    markup.row(btn3, btn4)
     bot.send_message(message.chat.id, f'Привет, {message.from_user.first_name}', reply_markup=markup)
 
 @bot.message_handler(content_types=['text'])
@@ -57,4 +58,6 @@ def info(message):
     elif message.text.lower() == 'id':
         bot.reply_to(message, f'ID: {message.from_user.id}')
 
-bot.polling(none_stop=True)
+
+if __name__ == '__main__':
+    bot.polling(none_stop=True)
